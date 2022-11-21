@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useEffect} from 'react'
 import CardContext from '../context/CardContext'
 import { useContext } from 'react'
 import Button from './Button'
@@ -9,6 +9,12 @@ import {TiDelete} from "react-icons/ti"
 export default function Favorites() {
     const {movie,setMovie,favorites,setFavorites,
         setDarkTheme,darkTheme,removeFavorites} = useContext(CardContext)
+
+        useEffect(()=>{
+            const favoriteMovies = JSON.parse(localStorage.getItem('favorites'))
+            setFavorites(favoriteMovies)
+              
+          },[])
   
   return (
     <motion.div 

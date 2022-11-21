@@ -12,18 +12,17 @@ import { motion } from 'framer-motion';
 
 const API_URL = ' http://www.omdbapi.com?apikey=7aff3931'
 function App() {
+  const {movie,setMovie,favorites,setFavorites,addFavorites,
+    removeFavorites,setDarkTheme,darkTheme,saveLocalStorage} = useContext(CardContext)
 
-  const {movie,setMovie,favorites,setFavorites,addFavorites,removeFavorites,setDarkTheme,darkTheme} = useContext(CardContext)
   const [name,setName] = useState('')
 
-  
   const searcMovies = async (title)=>{
     const response = await fetch(`${API_URL}&s=${title}`)
     const data = await response.json()
     setMovie(data.Search)
     setName('')
   }
-
 
   useEffect(()=>{
     searcMovies(name)
